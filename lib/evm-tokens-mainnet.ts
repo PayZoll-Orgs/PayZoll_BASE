@@ -23,7 +23,7 @@ export const contractMainnetAddresses = {
     [optimism.id]: '0xYourContractAddressOnOptimism',
     [bnbTestnet.id]: '0x9571BcCA765f30FF221dfB976ab530Ba44bd85AE',
     [polygonAmoy.id]: '0xA8Ef467c3242Aa4bb06e807E869137A410aa0D41',
-    [baseTestnet.id]: '',
+    [baseTestnet.id]: '0x2D0561CA92b103813efEec478fDC00E54b1d01Ee',
     // [pharos.id]:'0x2c137aC6Bc804A9F798053347802F489F0025768',
 };
 
@@ -219,19 +219,19 @@ export const tokensPerMainnetChain: { [chainId: number]: Token[] } = {
             symbol: "ETH",
             address: NATIVE_ADDRESS,
             decimals: 18,
-            priceFeed: "0xcD2A119bD1F7DF95d706DE6F2057fDD45A0503E2" // Base Sepolia ETH/USD feed
+            priceFeed: "0x4aDC67696bA383F43DD60A9e78F2C97Fbbfc7cb1" // Base Sepolia ETH/USD feed
         },
         {
             symbol: "USDC",
-            address: "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+            address: "0x9C868614ffca7da36B36330b1f317B117c7834dE",
             decimals: 6,
-            priceFeed: "0xA2F78ab2355fe2f984D808B5CeE7FD0A93D5270E" // Base Sepolia USDC/USD feed
+            priceFeed: "0xd30e2101a97dcbAeBCBC04F14C3f624E67A35165" 
         },
         {
             symbol: "WETH",
-            address: "0x4200000000000000000000000000000000000006",
+            address: "0xEa347A7CB535cBE125099A4C3B992149aE08e55d",
             decimals: 18,
-            priceFeed: "0xcD2A119bD1F7DF95d706DE6F2057fDD45A0503E2" // Same as ETH
+            priceFeed: "0x4aDC67696bA383F43DD60A9e78F2C97Fbbfc7cb1"
         }
     ],
     // [pharos.id]: [

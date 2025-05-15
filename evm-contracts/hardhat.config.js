@@ -1,12 +1,22 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
-const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
+const PRIVATE_KEY = process.env.PRIVATE_KEY || "0b7e1f4f635d3eae3fed25107deff064216c202181d90b476adf578dcc5fd1ee";
 
 module.exports = {
   solidity: "0.8.27",
   networks: {
-
+    
+    base: {
+      url: "https://base-mainnet.infura.io",
+      chainId: 8453,
+      accounts: [PRIVATE_KEY]
+    },
+    baseTestnet: {
+      url: "https://sepolia.base.org",
+      chainId: 84532,
+      accounts: [PRIVATE_KEY]
+    },
     pharos: {
       url: "https://devnet.dplabs-internal.com",
       chainId: 50002,

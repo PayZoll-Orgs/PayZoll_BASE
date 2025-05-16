@@ -245,6 +245,18 @@ flowchart LR
 
 ---
 
+## Deployments
+
+    * Bulk Payroll:
+---
+   [baseTestnet]: '0x2D0561CA92b103813efEec478fDC00E54b1d01Ee',
+   [base.id]: '0x2c137aC6Bc804A9F798053347802F489F0025768',
+
+   * Secure Transfer
+---
+    [baseTestnet]: '0x2c137aC6Bc804A9F798053347802F489F0025768',
+    [base]: '0x2D0561CA92b103813efEec478fDC00E54b1d01Ee',
+
 ## Team & Expertise
 
 Our team combines deep expertise in blockchain technology and End to End product and business development.

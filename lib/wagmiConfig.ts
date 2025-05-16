@@ -126,25 +126,25 @@ const bnbTestnet = {
     },
 } as const satisfies Chain;
 
-// const pharos = {
-//     id: 50002,
-//     name: 'Pharos Devnet',
-//     iconUrl: 'https://docs.pharosnetwork.xyz/~gitbook/image?url=https%3A%2F%2F3467509822-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Forganizations%252FKKJs3YcSFbFF0lrqt43f%252Fsites%252Fsite_l4IeK%252Ficon%252FkdvxtoO7c6VTNhdjG8PQ%252Fmark.png%3Falt%3Dmedia%26token%3D5ecfa4fd-78d8-4005-a06c-98df5c01ea50&width=32&dpr=4&quality=100&sign=8eb62a33&sv=2',
-//     iconBackground: 'Black',
-//     nativeCurrency: { name: 'Pharos', symbol: 'ETH', decimals: 18 },
-//     rpcUrls: {
-//         default: { http: ['https://devnet.dplabs-internal.com'] },
-//     },
-//     blockExplorers: {
-//         default: { name: 'Pharosscan', url: 'pharosscan.xyz' },
-//     },
-// }
+const pharos = {
+    id: 50002,
+    name: 'Pharos Devnet',
+    iconUrl: 'https://docs.pharosnetwork.xyz/~gitbook/image?url=https%3A%2F%2F3467509822-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Forganizations%252FKKJs3YcSFbFF0lrqt43f%252Fsites%252Fsite_l4IeK%252Ficon%252FkdvxtoO7c6VTNhdjG8PQ%252Fmark.png%3Falt%3Dmedia%26token%3D5ecfa4fd-78d8-4005-a06c-98df5c01ea50&width=32&dpr=4&quality=100&sign=8eb62a33&sv=2',
+    iconBackground: 'Black',
+    nativeCurrency: { name: 'Pharos', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://devnet.dplabs-internal.com'] },
+    },
+    blockExplorers: {
+        default: { name: 'Pharosscan', url: 'pharosscan.xyz' },
+    },
+}
 
 
 const config = getDefaultConfig({
     appName: 'PayZoll',
     projectId: '23c5e43972b3775ee6ed4f74f3e76efb',
-    chains: [polygon, arbitrum, avalanche, bnb, educhain, optimism, bnbTestnet, polygonAmoy, baseTestnet],
+    chains: [baseTestnet, polygon, arbitrum, avalanche, bnb, educhain, optimism, bnbTestnet, polygonAmoy, pharos],
 });
 
 

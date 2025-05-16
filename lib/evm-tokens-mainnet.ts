@@ -7,8 +7,8 @@ import {
     avalanche,
     bnbTestnet,
     polygonAmoy,
-    baseTestnet
-    // pharos,
+    baseTestnet,
+    pharos,
 } from "./evm-chains-mainnet";
 
 // Export the native address constant
@@ -24,7 +24,7 @@ export const contractMainnetAddresses = {
     [bnbTestnet.id]: '0x9571BcCA765f30FF221dfB976ab530Ba44bd85AE',
     [polygonAmoy.id]: '0xA8Ef467c3242Aa4bb06e807E869137A410aa0D41',
     [baseTestnet.id]: '0x2D0561CA92b103813efEec478fDC00E54b1d01Ee',
-    // [pharos.id]:'0x2c137aC6Bc804A9F798053347802F489F0025768',
+    [pharos.id]:'0x2c137aC6Bc804A9F798053347802F489F0025768',
 };
 
 // Token interface with optional priceFeed field
@@ -234,30 +234,30 @@ export const tokensPerMainnetChain: { [chainId: number]: Token[] } = {
             priceFeed: "0x4aDC67696bA383F43DD60A9e78F2C97Fbbfc7cb1"
         }
     ],
-    // [pharos.id]: [
-    //     {
-    //         symbol: "ETH",
-    //         address: NATIVE_ADDRESS,
-    //         decimals: 18,
-    //         priceFeed: ""
-    //     },
-    //     {
-    //         symbol: "ZOLLPTT",
-    //         address: "0xcB6A2D2185C9c01739C9AD9110424146934cfAe7",
-    //         decimals: 18,
-    //         priceFeed: ""
-    //     },
-    //     {
-    //         symbol: "WETH",
-    //         address: "0xc4CebF58836707611439e23996f4FA4165Ea6A28",
-    //         decimals: 18,
-    //         priceFeed: ""
-    //     },
-    //     {
-    //         symbol: "USDC",
-    //         address: "0x2E6D0aA9ca3348870c7cbbC28BF6ea90A3C1fE36",
-    //         decimals: 6,
-    //         priceFeed: ""
-    //     },
-    // ],
+    [pharos.id]: [
+        {
+            symbol: "ETH",
+            address: NATIVE_ADDRESS,
+            decimals: 18,
+            priceFeed: ""
+        },
+        {
+            symbol: "ZOLLPTT",
+            address: "0xcB6A2D2185C9c01739C9AD9110424146934cfAe7",
+            decimals: 18,
+            priceFeed: ""
+        },
+        {
+            symbol: "WETH",
+            address: "0xc4CebF58836707611439e23996f4FA4165Ea6A28",
+            decimals: 18,
+            priceFeed: ""
+        },
+        {
+            symbol: "USDC",
+            address: "0x2E6D0aA9ca3348870c7cbbC28BF6ea90A3C1fE36",
+            decimals: 6,
+            priceFeed: ""
+        },
+    ],
 };

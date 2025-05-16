@@ -5,19 +5,6 @@
 ---
 ![PayZoll](public/PZ-HOME.png)
 
-## 🌍 Vision & Alignment with Pharos
-
-## Pharos Vision  
-
-Pharos Network’s mission is to **bridge TradFi and DeFi** by providing:  
-
-- **Ultra-High Throughput** (50k TPS, lesst than 1s block times) via its Pharos VM and parallel execution layers;  
-- **Institution-Grade RWA Support** with on-chain credit networks, zk-attested identities, and native tokenization pipelines;  
-- **Special Processing Networks (SPNs)** for customizable, low-latency environments tailored to payments, AI, HFT, and privacy use-cases;  
-- **EVM-Compatibility & Interoperability**, unlocking seamless migration of Ethereum dApps and tooling onto a truly Web3-native settlement layer 
-
----
-
 ## Payzoll Vision  
 
 Payzoll unifies TradFi and DeFi into one **Web3-native financial umbrella**, offering:  
@@ -29,17 +16,6 @@ Payzoll unifies TradFi and DeFi into one **Web3-native financial umbrella**, off
 - **AI-Driven Automation** agents for recurring disbursements and compliance checks;  
 - **zk-KYC & Anonymous Auth** for privacy-preserving, on-chain identity and data storage.  
 - **Abstraction** finance running on web3 with the feel of traditionality;
-
----
-
-## Perfect Alignment  
-
-- **Inclusive Payment Rails**: Pharos’ sub-second finality and 50k TPS throughput power Payzoll’s gas-abstracted payroll and micro-streaming services at scale.
-- **RWA & Liquidity**: Pharos’ native RWA tooling and credit networks complement Payzoll’s tokenized payroll and stablecoin distributions, ensuring deep liquidity and compliance.
-- **Composable Superapps**: Leveraging SPNs and Pharos VM’s parallelism, Payzoll can modularly deploy payroll, streaming, compliance, analytics, and DAO governance under one unified ecosystem.
-- **TradFi-to-Web3 Convergence**: Both Pharos and Payzoll share a commitment to seamlessly onboard traditional finance into the blockchain era. Pharos delivers institutional-grade RWA tooling, on-chain credit networks, zk-attested identities, and ultra-high throughput settlement, while Payzoll provides fully compliant payroll, fiat on/off-ramps, KYC/AML workflows, and familiar UX abstractions—together creating an end-to-end migration path for banks, enterprises, and everyday users to adopt decentralized rails without compromising on performance, security, or regulatory requirements.
-
-Together, Pharos and Payzoll drive **trustless innovation**, **financial inclusion**, and **mass adoption** by seamlessly connecting traditional finance rails with decentralized settlement, enabling real-world payroll, payments, and asset management at Internet scale.  
 
 ---
 
@@ -56,7 +32,7 @@ Payzoll is a **fully modular Web3 payment infrastructure** built to meet the nee
   Real-time money flows for freelancers, DAOs, and distributed teams—no more batch cycles or waiting periods, just continuous value transfer whenever and wherever it’s needed.
 
 - **Secure P2P Transfers**  
-  Trust-minimized, recoverable person-to-person transfers with built-in dispute resolution and recovery options, making peer payments reliable and user-friendly.
+  Trust-minimized, recoverable person-to-person transfers with built-in dispute resolution and recovery options, making peer payments reliable and user-friendly. Address books and friends features to split any bills among people. Pay for your invoices, subscriptions, bills, purchases.
 
 - **Fiat On/Off-Ramps**  
   Seamless integration with banking rails and fiat bridges—move money in and out of crypto with a single click, backed by institutional liquidity and compliance.

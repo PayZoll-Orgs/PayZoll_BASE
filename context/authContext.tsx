@@ -73,8 +73,8 @@ interface AuthContextType {
 }
 
 // Routes configuration
-const PUBLIC_ROUTES = ['/', '/login', '/register', '/forgot-password', '/pages/services', '/pages/auth', '/pages/ramps', '/pages/admin', '/pages/p2p', '/pages/about', '/pages/payroll', '/pages/streaming'];
-const ADMIN_ROUTES = ['/pages/payroll-sui', '/pages/p2p-sui'];
+const PUBLIC_ROUTES = ['/', '/login', '/register', '/forgot-password', '/pages/services', '/pages/auth', '/pages/ramps', '/pages/admin', '/pages/p2p', '/pages/about', '/pages/streaming'];
+const ADMIN_ROUTES = ['/pages/payroll', '/pages/p2p'];
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -157,11 +157,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
                 // Redirect based on mode
                 if (credentials.authMode === 'payroll') {
-                    router.push("/pages/payroll-sui");
+                    router.push("/pages/payroll");
                 } else if (credentials.authMode === 'p2p') {
-                    router.push("/pages/p2p-sui");
+                    router.push("/pages/p2p");
                 } else if (response.safeUser.isAdmin) {
-                    router.push("/pages/payroll-sui");
+                    router.push("/pages/payroll");
                 } else {
                     router.push("/pages/employee");
                 }

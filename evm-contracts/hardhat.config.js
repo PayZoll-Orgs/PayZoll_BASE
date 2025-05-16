@@ -22,6 +22,11 @@ module.exports = {
       chainId: 50002,
       accounts: [PRIVATE_KEY]
     },
+    pharosTestnet: {
+      url: "https://testnet.dplabs-internal.com",
+      chainId: 688688,
+      accounts: [PRIVATE_KEY]
+    },
     // Polygon Mainnet
     polygon: {
       url: "https://polygon-rpc.com",

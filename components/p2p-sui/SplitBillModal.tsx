@@ -42,6 +42,15 @@ export const SplitBillModal = ({ invoice, onClose, onSuccess, tokenSymbol = 'ETH
     const publicClient = usePublicClient();
     const walletAddress = address || '';
 
+    // Format token amount with appropriate decimals
+    const formatTokenAmount = (amount: number): string => {
+        if (amount >= 0.01) {
+            return amount.toFixed(4);
+        } else {
+            return amount.toFixed(8);
+        }
+    };
+
     useEffect(() => {
         const fetchExchangeRate = async () => {
             if (!publicClient) return;
@@ -58,6 +67,7 @@ export const SplitBillModal = ({ invoice, onClose, onSuccess, tokenSymbol = 'ETH
 
                 const rate = await getExchangeRate(provider, tokenSymbol, chainId);
                 setExchangeRate(rate);
+                console.log(`Exchange rate loaded: 1 USD = ${rate} ${tokenSymbol}`);
 
                 // Calculate token equivalent for display only
                 setTokenAmount(invoice.amount * rate);
@@ -241,13 +251,15 @@ export const SplitBillModal = ({ invoice, onClose, onSuccess, tokenSymbol = 'ETH
                         </div>
                     </div>
 
-                    <div className="bg-gray-50 dark:bg-gray-900 p-3 rounded-md mb-4">
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                            Exchange Rate: 1 USD = {exchangeRate > 0 ? exchangeRate.toFixed(6) : '...'} {tokenSymbol}
-                        </p>
-                        <p className="font-medium mt-1">
-                            Token Equivalent: <span className="text-lg">{tokenAmount.toFixed(8)} {tokenSymbol}</span>
-                        </p>
+                    <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-md mb-4">
+                        <div className="flex justify-between items-center mb-2">
+                            <span className="text-sm text-gray-600 dark:text-gray-400">Exchange Rate:</span>
+                            <span className="font-medium">1 USD = {exchangeRate > 0 ? exchangeRate.toFixed(6) : '...'} {tokenSymbol}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-600 dark:text-gray-400">Total in {tokenSymbol}:</span>
+                            <span className="font-bold text-lg">{formatTokenAmount(tokenAmount)} {tokenSymbol}</span>
+                        </div>
                     </div>
 
                     {error && (

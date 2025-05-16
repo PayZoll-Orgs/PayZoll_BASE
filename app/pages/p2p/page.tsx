@@ -1,7 +1,6 @@
 "use client";
 import "@/hooks/usePaymentsManager"
 import { useState, useEffect } from 'react';
-import { useNetwork } from '@/context/networkContext';
 import { tokensPerMainnetChain, Token } from '@/lib/evm-tokens-mainnet-tfs';
 import P2PHeader from "@/components/p2p-sui/Header";
 import { SecureTransferInterface } from "@/components/p2p-sui/SecureTransferInterface";
@@ -15,7 +14,6 @@ import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 function Page() {
-    const { currentNetwork } = useNetwork?.() || { currentNetwork: 'mainnet' };
     const { address } = useAccount();
     const chainId = useChainId();
     const [selectedToken, setSelectedToken] = useState<Token | undefined>(undefined);

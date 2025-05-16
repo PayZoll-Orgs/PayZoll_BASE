@@ -51,7 +51,7 @@ export const CreateInvoiceForm = () => {
                     await addContactFromInvoice(invoiceResponse.data._id);
                     toast.success('Invoice created and contact added to address book');
                 } catch (error) {
-                    console.error('Failed to add contact to address book:', error);
+                    console.log('Failed to add contact to address book:', error);
                     toast.success('Invoice created, but failed to add contact');
                 }
             } else {

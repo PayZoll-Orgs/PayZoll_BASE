@@ -249,9 +249,8 @@ flowchart LR
 
 **Bulk Payroll**
 ---
-
-   baseTestnet: '0x2D0561CA92b103813efEec478fDC00E54b1d01Ee',
-   base: '0x2c137aC6Bc804A9F798053347802F489F0025768',
+    baseTestnet: '0x2D0561CA92b103813efEec478fDC00E54b1d01Ee',
+    base: '0x2c137aC6Bc804A9F798053347802F489F0025768',
 
 **Secure Transfer**
 ---

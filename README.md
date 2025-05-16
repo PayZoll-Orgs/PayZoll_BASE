@@ -32,7 +32,8 @@ Payzoll is a **fully modular Web3 payment infrastructure** built to meet the nee
   Real-time money flows for freelancers, DAOs, and distributed teams—no more batch cycles or waiting periods, just continuous value transfer whenever and wherever it’s needed.
 
 - **Secure P2P Transfers**  
-  Trust-minimized, recoverable person-to-person transfers with built-in dispute resolution and recovery options, making peer payments reliable and user-friendly. Address books and friends features to split any bills among people. Pay for your invoices, subscriptions, bills, purchases.
+  Trust-minimized, recoverable person-to-person transfers with built-in dispute resolution and recovery options, making peer payments reliable and user-friendly. Address books and friends features to split any bills among people. 
+  Pay for your invoices, subscriptions, bills, purchases.
 
 - **Fiat On/Off-Ramps**  
   Seamless integration with banking rails and fiat bridges—move money in and out of crypto with a single click, backed by institutional liquidity and compliance.
@@ -65,6 +66,42 @@ Our ultimate mission is to onboard traditional businesses into Web3 without fric
 By abstracting complexity and unifying centralized and decentralized rails, Payzoll makes advanced Web3 finance feel like a button click—empowering enterprises, startups, and everyday users to transact globally with confidence and ease.
 
 ---
+
+## 🏗️ Buildathon Deliverables
+
+During the buildathon, we focused on extending PayZoll’s core infrastructure and UX to deliver several high-impact features:
+
+1. **Next-Gen Payroll Contract**  
+   - **Cron-style scheduling**: Native support for recurring disbursements using on-chain “cron” jobs.  
+   - **Decentralized price oracles**: Streams payments in USD-pegged stablecoins or any ERC-20 token, with real-time exchange rates.  
+   - **Batch processing**: Larger batch sizes for high-volume payroll runs, reducing gas overhead.  
+   - **Multi-token & stablecoin support**: Employees can choose from a basket of tokens (USDC, USDT, DAI, native tokens).
+
+2. **Escrow-Based P2P & Invoice Protocols**  
+   - **Secure, recoverable transfers**: Funds held in escrow with on-chain dispute logic and time-bound refunds.  
+   - **Invoice & subscription payments**: Smart contracts for one-off invoices and recurring subscription billing.  
+   - **Bill splitting & address book**: Native “split bill” flows and saved contacts for one-click peer payments.
+
+3. **UX/UI Revamp**  
+   - **Modern animations**: Framer Motion transitions for dashboards, modals, and notifications.  
+   - **Progressive auth**: New social-login and zk-auth flows for faster onboarding.  
+   - **Dynamic routing**: Context-aware navigation that surfaces the right module based on user role and recent activity.
+
+4. **Backend & Orchestration Engine**  
+   - **Modular transaction router**: Handles cron jobs, batch payroll, escrow flows, and multi-token swaps.  
+   - **P2P microservice**: Dedicated service for dispute resolution, contact management, and invoice state tracking.  
+   - **KYC integration**: Off-ramp KYC checks wired into transaction pipelines to ensure compliance before settlement.
+
+5. **Ongoing & Upcoming Work**  
+   - **AI-Driven Onboarding Agents**: Automate user setup, KYC reminders, and tutorial flows (in development).  
+   - **Gasless meta-tx & relayers**: Universal relayer support for truly zero-gas UX across modules.  
+   - **Universal token infra**: Shared vaults, price feeds, and routing for any ERC-20 or native token.  
+   - **PayZoll Token**: Governance & utility token to incentivize network participation, reduce fees, and unlock premium features.
+
+---
+
+With these buildathon enhancements, PayZoll showcases both technical depth and user-centric design—laying the foundation for a seamless, end-to-end Web3 finance experience.  
+
 
 ## Accomplishments
 

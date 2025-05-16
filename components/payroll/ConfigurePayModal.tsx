@@ -10,7 +10,6 @@ import { allMainnetChains as chains } from '@/lib/evm-chains-mainnet';
 import { tokensPerMainnetChain as tokens, Token } from '@/lib/evm-tokens-mainnet';
 import { getExchangeRate } from '@/lib/chainlink-helper';
 import { ethers } from 'ethers';
-import { CardSpotlight } from "../ui/cardSpotlight";
 
 interface ConfigurePayModalProps {
   isOpen: boolean;
@@ -264,7 +263,6 @@ const ConfigurePayModal: React.FC<ConfigurePayModalProps> = ({
           onClick={onClose}
         >
           <div className="relative w-full min-h-full flex items-center justify-center py-6">
-            <CardSpotlight className="dark:bg-black/60 border border-gray-200">
               <motion.div
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -538,7 +536,6 @@ const ConfigurePayModal: React.FC<ConfigurePayModalProps> = ({
                   </div>
                 </div>
               </motion.div>
-            </CardSpotlight>
           </div>
         </motion.div>
       </AnimatePresence >
@@ -551,7 +548,6 @@ const ConfigurePayModal: React.FC<ConfigurePayModalProps> = ({
           className="fixed inset-0 dark:bg-black bg-white z-50 p-4 overflow-y-auto"
         >
           <div className="relative w-full min-h-full flex items-center justify-center py-6">
-            <CardSpotlight>
               <motion.div
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -606,7 +602,6 @@ const ConfigurePayModal: React.FC<ConfigurePayModalProps> = ({
                   </div>
                 </div>
               </motion.div>
-            </CardSpotlight>
           </div>
         </motion.div>
       </AnimatePresence>

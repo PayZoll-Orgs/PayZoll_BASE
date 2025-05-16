@@ -3,7 +3,6 @@ import { fetchInvoicesByEmail, Invoice, updateInvoiceStatus } from '@/api/invoic
 import { usePaymentsManager } from '@/hooks/usePaymentsManager';
 import { Token, NATIVE_ADDRESS } from '@/lib/evm-tokens-mainnet-tfs';
 import { useAuth } from '@/context/authContext';
-import { useNetwork } from '@/context/networkContext';
 import { toast } from 'react-hot-toast';
 import { Clock, CheckCircle, X, Loader, DollarSign, AlertCircle, Users } from 'lucide-react';
 import { getExchangeRate } from '@/lib/chainlink-helper';
@@ -32,7 +31,6 @@ export const InvoiceList = ({ selectedToken }: InvoiceListProps) => {
     const [hasShownSuccessToast, setHasShownSuccessToast] = useState(false);
 
     const { user } = useAuth();
-    const { currentNetwork } = useNetwork();
     const publicClient = usePublicClient();
 
     const {
@@ -431,10 +429,6 @@ export const InvoiceList = ({ selectedToken }: InvoiceListProps) => {
                                     <div>
                                         <p className="text-sm text-gray-500 dark:text-gray-400">Due Date</p>
                                         <p className="font-medium">{new Date(selectedInvoice.dueDate).toLocaleDateString()}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-gray-500 dark:text-gray-400">Network</p>
-                                        <p className="font-medium capitalize">{publicClient?.chain?.name || currentNetwork}</p>
                                     </div>
                                     <div>
                                         <p className="text-sm text-gray-500 dark:text-gray-400">Status</p>

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useAccount } from 'wagmi';
+import { useAccount, usePublicClient } from 'wagmi';
 import { useAuth } from '@/context/authContext';
 import { getInitiatedSplitBills, getParticipantSplitBills, SplitBill, updateParticipantPayment } from '@/api/splitBillApi';
 import { usePaymentsManager } from '@/hooks/usePaymentsManager';
 import { Token } from '@/lib/evm-tokens-mainnet-tfs';
-import { Users, Clock, CheckCircle, X, AlertCircle } from 'lucide-react';
+import { Users, Clock, CheckCircle, X, AlertCircle, DollarSign } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import { ResultMessageDisplay } from './ResultMessageDisplay';
+import { getExchangeRate } from '@/lib/chainlink-helper';
+import { ethers } from 'ethers';
 
 interface SplitBillListProps {
     selectedToken: Token | undefined;
@@ -21,9 +23,12 @@ export const SplitBillList = ({ selectedToken, refreshTrigger = 0 }: SplitBillLi
     const [selectedSplit, setSelectedSplit] = useState<SplitBill | null>(null);
     const [paymentSplit, setPaymentSplit] = useState<SplitBill | null>(null);
     const [isPayModalOpen, setIsPayModalOpen] = useState(false);
+    const [exchangeRate, setExchangeRate] = useState<number>(0);
 
     const { address } = useAccount();
     const { user } = useAuth();
+    const publicClient = usePublicClient();
+
     const {
         sendPayment,
         isLoading: paymentLoading,
@@ -56,6 +61,38 @@ export const SplitBillList = ({ selectedToken, refreshTrigger = 0 }: SplitBillLi
         fetchSplitBills();
     }, [refreshTrigger, user]);
 
+    // Fetch exchange rate when selected token changes
+    useEffect(() => {
+        const fetchExchangeRate = async () => {
+            if (!selectedToken || !publicClient) return;
+
+            try {
+                const chainId = publicClient.chain?.id || 1;
+
+                let provider;
+                if ('transport' in publicClient && 'url' in publicClient.transport) {
+                    provider = new ethers.JsonRpcProvider(publicClient.transport.url);
+                } else {
+                    provider = new ethers.JsonRpcProvider();
+                }
+
+                const rate = await getExchangeRate(provider, selectedToken.symbol, chainId);
+                setExchangeRate(rate);
+                console.log(`Exchange rate loaded: 1 USD = ${rate} ${selectedToken.symbol}`);
+            } catch (error) {
+                console.error(`Failed to fetch ${selectedToken.symbol} exchange rate:`, error);
+                // Fallback exchange rate
+                if (selectedToken.symbol.includes('USD')) {
+                    setExchangeRate(1);
+                } else {
+                    setExchangeRate(0.001); // Default fallback
+                }
+            }
+        };
+
+        fetchExchangeRate();
+    }, [selectedToken, publicClient]);
+
     // Find the participant entry for the current user
     const getCurrentUserParticipant = (split: SplitBill) => {
         if (!address || !user?.email) return null;
@@ -79,6 +116,20 @@ export const SplitBillList = ({ selectedToken, refreshTrigger = 0 }: SplitBillLi
     const handlePaySplit = (split: SplitBill) => {
         setPaymentSplit(split);
         setIsPayModalOpen(true);
+    };
+
+    // Convert USD amount to token amount
+    const convertUsdToToken = (usdAmount: number): number => {
+        return usdAmount * exchangeRate;
+    };
+
+    // Format token amount with appropriate decimals
+    const formatTokenAmount = (amount: number): string => {
+        if (amount >= 0.01) {
+            return amount.toFixed(4);
+        } else {
+            return amount.toFixed(8);
+        }
     };
 
     // Execute payment to split initiator
@@ -105,11 +156,27 @@ export const SplitBillList = ({ selectedToken, refreshTrigger = 0 }: SplitBillLi
         setResultMessage({ type: '', message: '' });
 
         try {
-            // Make the payment using EVM payment system
+            // Convert USD amount to token amount with proper decimal handling
+            const tokenAmount = convertUsdToToken(userParticipant.amount);
+
+            // Format to a maximum of 8 decimal places to prevent precision errors
+            // Use ethers.js utils to ensure correct formatting for blockchain transactions
+            let formattedAmount;
+
+            if (tokenAmount < 0.00001) {
+                // For very small amounts, use a fixed number of decimals
+                formattedAmount = tokenAmount.toFixed(8);
+            } else {
+                formattedAmount = tokenAmount.toFixed(8);
+            }
+
+            console.log(`Payment amount: ${userParticipant.amount} USD → ${formattedAmount} ${selectedToken?.symbol || 'ETH'}`);
+
+            // Make the payment using EVM payment system with the properly formatted token amount
             await sendPayment(
                 paymentId,
                 paymentSplit.initiatorWalletAddress,
-                userParticipant.amount.toString()
+                formattedAmount
             );
 
             // If payment was successful (monitored in the effect below)
@@ -246,7 +313,7 @@ export const SplitBillList = ({ selectedToken, refreshTrigger = 0 }: SplitBillLi
                                     </p>
                                     <p className="text-sm mt-1">
                                         <span className="text-gray-500 dark:text-gray-400">Total: </span>
-                                        <span className="font-medium">{split.totalAmount} {tokenSymbol}</span>
+                                        <span className="font-medium">{split.totalAmount} USD</span>
                                     </p>
                                     <p className="text-sm">
                                         <span className="text-gray-500 dark:text-gray-400">Due: </span>
@@ -282,7 +349,7 @@ export const SplitBillList = ({ selectedToken, refreshTrigger = 0 }: SplitBillLi
                                                         onClick={() => handlePaySplit(split)}
                                                         className="px-3 py-1 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-md"
                                                     >
-                                                        Pay {userPart.amount} {tokenSymbol}
+                                                        Pay {userPart.amount} USD
                                                     </button>
                                                 );
                                             }
@@ -332,7 +399,7 @@ export const SplitBillList = ({ selectedToken, refreshTrigger = 0 }: SplitBillLi
                                 </div>
                                 <div>
                                     <p className="text-sm text-gray-500 dark:text-gray-400">Total Amount</p>
-                                    <p className="font-medium">{selectedSplit.totalAmount} {tokenSymbol}</p>
+                                    <p className="font-medium">{selectedSplit.totalAmount} USD</p>
                                 </div>
                                 <div>
                                     <p className="text-sm text-gray-500 dark:text-gray-400">Due Date</p>
@@ -364,7 +431,7 @@ export const SplitBillList = ({ selectedToken, refreshTrigger = 0 }: SplitBillLi
                                                 <p className="text-sm text-gray-500 dark:text-gray-400">{participant.email}</p>
                                             </div>
                                             <div className="text-right">
-                                                <p className="font-medium">{participant.amount} {tokenSymbol}</p>
+                                                <p className="font-medium">{participant.amount} USD</p>
                                                 <p className={`text-sm ${participant.status === 'paid'
                                                     ? 'text-green-600 dark:text-green-500'
                                                     : 'text-yellow-600 dark:text-yellow-500'
@@ -406,7 +473,7 @@ export const SplitBillList = ({ selectedToken, refreshTrigger = 0 }: SplitBillLi
                 </div>
             )}
 
-            {/* Payment Modal */}
+            {/* Payment Modal - Updated to show both USD and token amounts */}
             {isPayModalOpen && paymentSplit && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-md w-full">
@@ -433,10 +500,29 @@ export const SplitBillList = ({ selectedToken, refreshTrigger = 0 }: SplitBillLi
                                 const userPart = getCurrentUserParticipant(paymentSplit);
                                 if (!userPart) return null;
 
+                                // Calculate token amount from USD amount
+                                const tokenAmount = convertUsdToToken(userPart.amount);
+
                                 return (
                                     <div className="p-4 border border-blue-100 dark:border-blue-900 rounded-md">
-                                        <p className="font-medium">Your share: {userPart.amount} {tokenSymbol}</p>
-                                        <p className="text-sm mt-1">
+                                        <div className="flex items-center justify-between mb-2">
+                                            <span className="font-medium flex items-center">
+                                                <DollarSign className="h-4 w-4 mr-1" />
+                                                USD Amount:
+                                            </span>
+                                            <span className="font-bold">{userPart.amount} USD</span>
+                                        </div>
+
+                                        <div className="flex items-center justify-between mb-3">
+                                            <span className="font-medium">Token Equivalent:</span>
+                                            <span className="font-bold">{formatTokenAmount(tokenAmount)} {selectedToken?.symbol || 'ETH'}</span>
+                                        </div>
+
+                                        <div className="text-xs text-gray-500 mt-1">
+                                            Exchange Rate: 1 USD = {exchangeRate.toFixed(6)} {selectedToken?.symbol || 'ETH'}
+                                        </div>
+
+                                        <p className="text-sm mt-3">
                                             Paying to: {paymentSplit.initiatorWalletAddress.substring(0, 8)}...
                                         </p>
                                     </div>

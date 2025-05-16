@@ -8,7 +8,7 @@ module.exports = {
   networks: {
     
     base: {
-      url: "https://base-mainnet.infura.io",
+      url: "https://base-mainnet.g.alchemy.com/v2/PuNchGLgPXGKvzg2soOzGs_lCT_0KHiU",
       chainId: 8453,
       accounts: [PRIVATE_KEY]
     },

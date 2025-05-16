@@ -99,6 +99,18 @@ export const baseTestnet = defineChain({
         default: { name: 'BaseScan', url: 'https://sepolia.basescan.org' },
     },
 });
+export const base = defineChain({
+    id: 8453,
+    name: 'Base Mainnet',
+
+    nativeCurrency: { name: 'Ethereum', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://base-mainnet.g.alchemy.com/v2/PuNchGLgPXGKvzg2soOzGs_lCT_0KHiU'] },
+    },
+    blockExplorers: {
+        default: { name: 'BaseScan', url: 'https://basescan.org' },
+    },
+});
 
 export const bnbTestnet = defineChain({
     id: 97,
@@ -136,6 +148,7 @@ export const allMainnetChains = [
     optimism,
     avalanche,
     bnbTestnet,
+    base,
     baseTestnet,
     pharos
 ]

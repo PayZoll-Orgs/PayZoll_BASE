@@ -8,6 +8,7 @@ import {
     bnbTestnet,
     polygonAmoy,
     baseTestnet,
+    base,
     pharos,
 } from "./evm-chains-mainnet";
 
@@ -23,6 +24,7 @@ export const contractMainnetAddresses = {
     [optimism.id]: '',
     [bnbTestnet.id]: '',
     [baseTestnet.id]: '0x2c137aC6Bc804A9F798053347802F489F0025768',
+    [base.id]: '0x2D0561CA92b103813efEec478fDC00E54b1d01Ee',
     [polygonAmoy.id]: '0xCd0e744c171810b45567Ad458C0601b349a8f360',
     [pharos.id]:'',
 };
@@ -214,6 +216,26 @@ export const tokensPerMainnetChain: { [chainId: number]: Token[] } = {
             priceFeed: "0x90c069C4538adAc136E051052E14c1cD799C41B7"
         },
     ],
+    [base.id]: [
+            {
+                symbol: "ETH",
+                address: NATIVE_ADDRESS,
+                decimals: 18,
+                priceFeed: "0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70"
+            },
+            {
+                symbol: "USDC",
+                address: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+                decimals: 6,
+                priceFeed: "0x7e860098F58bBFC8648a4311b374B1D669a2bc6B" 
+            },
+            {
+                symbol: "WETH",
+                address: "0x4200000000000000000000000000000000000006",
+                decimals: 18,
+                priceFeed: "0xFC1415403EbB0c693f9a7844b92aD2Ff24775C65"
+            }
+        ],
     [baseTestnet.id]: [
             {
                 symbol: "ETH",

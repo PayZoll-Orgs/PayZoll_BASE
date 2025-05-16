@@ -70,6 +70,20 @@ const baseTestnet = {
     },
 } as const satisfies Chain;
 
+const base = {
+    id: 8453,
+    name: 'Base Mainnet',
+    iconUrl: 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/base/info/logo.png',
+    iconBackground: 'Black',
+    nativeCurrency: { name: 'Ethereum', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://base-mainnet.g.alchemy.com/v2/PuNchGLgPXGKvzg2soOzGs_lCT_0KHiU'] },
+    },
+    blockExplorers: {
+        default: { name: 'BaseScan', url: 'https://basescan.org' },
+    },
+} as const satisfies Chain;
+
 const educhain = {
     id: 41923,
     name: 'Educhain',
@@ -144,7 +158,7 @@ const pharos = {
 const config = getDefaultConfig({
     appName: 'PayZoll',
     projectId: '23c5e43972b3775ee6ed4f74f3e76efb',
-    chains: [baseTestnet, polygon, arbitrum, avalanche, bnb, educhain, optimism, bnbTestnet, polygonAmoy, pharos],
+    chains: [baseTestnet, base, polygon, arbitrum, avalanche, bnb, educhain, optimism, bnbTestnet, polygonAmoy, pharos],
 });
 
 

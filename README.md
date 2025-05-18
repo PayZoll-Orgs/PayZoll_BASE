@@ -325,7 +325,7 @@ Payzoll’s combination of zk-KYC for privacy-preserving compliance, AI-driven a
 
 ## Links & Demos
 
-- [Website](https://payzoll.xyz)
+- [Website](https://payzoll-base.pages.dev/)
 - [GitHub](https://github.com/PayZoll-Orgs)
 
 ## Contact Us
